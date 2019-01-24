@@ -33,11 +33,18 @@ export default class Renderer {
         const rotation = 0
         const TAU = Math.PI * 2
 
+        const positionCopy = position.copy()
         
-        const temp = new Vector(0,0).sub(position)
+        const temp = new Vector(0,0).sub(positionCopy)
         
         const { rx, ry } = options
-        const { x, y } = position.copy().sub(camera.position)
+        const { x, y } = positionCopy.sub(camera.position).div(temp)
+
+
+
+
+
+
         ctx.save()
         ctx.fillStyle = texture.fill
         ctx.strokeStyle = texture.fill
