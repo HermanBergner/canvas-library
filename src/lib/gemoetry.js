@@ -1,11 +1,11 @@
 import Texture from "./texture";
-import { Vector } from "./vector";
+import Vector from "./vector";
 
 export default class Gemometry{
 
-  constructor(type, texture){
+  constructor(type, texture, opt){
     this.texture = texture || Texture.Default()
-    this.options = type
+    this.options = Object.assign(type, opt)
   }
 
   static Ellipse(x = 0, y = 0, rx = 5, ry = null){
@@ -16,6 +16,16 @@ export default class Gemometry{
         ry: ry ? ry : rx
       }
   }
+
+  static Rectangle(x = 0, y = 0, width = 20, height = 20){
+    return {
+      type: 'rectangle',
+      position: new Vector(x, y),
+      width,
+      height,
+      mode: 'center'
+    }
+}
 
   get position(){
     const { position } = this.options
