@@ -11,7 +11,7 @@ const dist = (...args) => {
   }
 }
 
-export default class Vector{
+class Vector{
   
   constructor(x = 0, y = 0, z = 0){
     this.x = x;
@@ -342,4 +342,3 @@ export default class Vector{
   }
   
 }
-
