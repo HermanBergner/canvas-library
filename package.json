@@ -5,9 +5,18 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel ./index.html",
-    "build": "parcel build ./index.html -d dist"
+    "build": "parcel build ./index.html -d dist",
+    "test": "mocha --compilers js:@babel/register ./tests/ --timeout 10000"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.11.0"
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/register": "^7.0.0",
+    "@fortawesome/fontawesome-pro": "^5.7.1",
+    "chai": "^4.2.0",
+    "jsdom-quokka-plugin": "^1.0.14",
+    "mocha": "^5.2.0",
+    "parcel-bundler": "^1.11.0",
+    "sass": "^1.16.1"
   }
 }

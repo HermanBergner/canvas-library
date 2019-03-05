@@ -1,41 +1,72 @@
-import { Camera, Canvas, Geometry, Texture } from './library';
-
-const texture = new Texture({ fill:'white' })
-
-const camera1 = new Camera({x:0, y:0})
-const camera2 = new Camera({x:100, y:- 150})
-
-const canvas = new Canvas({width: 500, height:500})
-
-const center = new Geometry(Geometry.Ellipse(150, 150, 20), texture)
-const left = new Geometry(Geometry.Ellipse(100, 150, 20), texture)
-const right = new Geometry(Geometry.Ellipse(200, 150, 20), texture)
-const top = new Geometry(Geometry.Ellipse(150, 100, 20), texture)
-const bottom = new Geometry(Geometry.Ellipse(150, 200, 20), texture)
+const random = (min = 0, max = 0) => {
+  if (min > max)
+    return random(max, min);
+  if (min === 0 && max === 0)
+    return random(0, 1);
+  return Math.random() * (max - min) + min;
+}
 
 
-const a = new Geometry(Geometry.Ellipse(-150, -200, 90), texture)
+import '../style/main.sass'
 
-canvas.add( camera1, camera2 )
-canvas.add(center, left, right, top, bottom, a)
+import Vector from './lib/vector'
+import Renderer from './lib/renderer'
+import Camera from './lib/camera'
+import Scene from './lib/scene'
+import Texture from './lib/texture'
+import Ellipse from './lib/ellipse'
+import Rectangle from './lib/rectangle'
+import Grid from './lib/grid';
 
-canvas.on('keypress',    (e) => {
-  if(e.key === '1')
-    canvas.set.camera(0)
-  if(e.key === '2')
-    canvas.set.camera(1)
-})
 
-canvas.on('scrollup',    (e) => {camera1.zoom += 0.1})
+//Styling
+import Color from './lib/color';
+
+
+
+
+
+const camera = new Camera({ x: 0, y: 0, z: -1 })
+const scene = new Scene({ background: 0x222222 })
+const renderer = new Renderer()
+
+// Add the renderers dom element to a container
+document.querySelector('#container').appendChild(renderer.dom)
+
+const rectangle = new Rectangle({ x:0, y:0, width: 10, height: 10})
+const grid = new Grid({ rows: 200, columns: 200, width: 6000, height: 6000 })
+
+
+
+
+
+// add the ellipse to the scene (for rendering)
+scene.add( rectangle )
+scene.add( grid )
+
+let b = grid.highlight(0, 10, h3 )
 
 
 const update = () => {
   requestAnimationFrame(update)
-  
-  canvas.render()  
+
+  //b.x = ++b.x % 200
+  //Render the scene
+  renderer.render(scene, camera)
 }
 
+//start the update loop
 update()
 
 
 
+renderer.dom.addEventListener('mousewheel', e => {
+  e.preventDefault()
+
+
+  let x = (e.offsetX || (e.pageX - renderer.dom.offsetLeft))
+  let y = (e.offsetY || (e.pageY - renderer.dom.offsetTop))
+  const delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+
+  camera.position.z += delta * 0.2
+})

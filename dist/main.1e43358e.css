@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+.button.red {
+  background-color: #f44e42;
+  color: white;
+}
+.button.red:hover {
+  background-color: #f12112;
+}
+.button.red:active {
+  background-color: #dd1b0d;
+}
+
+.button.orange {
+  background-color: #f49e42;
+  color: white;
+}
+.button.orange:hover {
+  background-color: #f18512;
+}
+.button.orange:active {
+  background-color: #dd780d;
+}
+
+.button.yellow {
+  background-color: #ffd51c;
+  color: white;
+}
+.button.yellow:hover {
+  background-color: #e8bd00;
+}
+.button.yellow:active {
+  background-color: #cfa800;
+}
+
+.button.green {
+  background-color: #43ce21;
+  color: white;
+}
+.button.green:hover {
+  background-color: #35a21a;
+}
+.button.green:active {
+  background-color: #2e8c16;
+}
+
+.button.teal {
+  background-color: #03846f;
+  color: white;
+}
+.button.teal:hover {
+  background-color: #025245;
+}
+.button.teal:active {
+  background-color: #013930;
+}
+
+.button.aqua {
+  background-color: #42e5ca;
+  color: white;
+}
+.button.aqua:hover {
+  background-color: #1ed6b8;
+}
+.button.aqua:active {
+  background-color: #1ac0a5;
+}
+
+.button.blue {
+  background-color: #4ea2fc;
+  color: white;
+}
+.button.blue:hover {
+  background-color: #1c88fb;
+}
+.button.blue:active {
+  background-color: #047bf9;
+}
+
+.button.purple {
+  background-color: #9254f7;
+  color: white;
+}
+.button.purple:hover {
+  background-color: #7323f5;
+}
+.button.purple:active {
+  background-color: #640bf3;
+}
+
+.button.pink {
+  background-color: #fc79fa;
+  color: white;
+}
+.button.pink:hover {
+  background-color: #fb47f8;
+}
+.button.pink:active {
+  background-color: #fa2ef7;
+}
+
+.button {
+  user-select: none;
+  display: inline-block;
+  background-color: #d8d8d8;
+  color: #727272;
+  padding: 10px;
+  border-radius: 0.3rem;
+  font-size: 1.2rem;
+  border: none;
+  position: relative;
+}
+.button:focus {
+  outline: none;
+}
+.button:hover {
+  background-color: #cbcbcb;
+}
+.button:active {
+  background-color: #bfbfbf;
+}
+
+.button.extreme {
+  font-size: 3.7rem;
+}
+
+.button.massive {
+  font-size: 3.3rem;
+}
+
+.button.hudge {
+  font-size: 2.9rem;
+}
+
+.button.big {
+  font-size: 2.5rem;
+}
+
+.button.large {
+  font-size: 2.1rem;
+}
+
+.button.medium {
+  font-size: 1.7rem;
+}
+
+.button.small {
+  font-size: 1.3rem;
+}
+
+.button.tiny {
+  font-size: 0.9rem;
+}
+
+.button.mini {
+  font-size: 0.6rem;
+}
+
+.temp {
+  width: 90%;
+  margin: 100px auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+}
+
+.one.wide.column {
+  grid-column: span 1;
+}
+
+.two.wide.column {
+  grid-column: span 2;
+}
+
+.three.wide.column {
+  grid-column: span 3;
+}
+
+.four.wide.column {
+  grid-column: span 4;
+}
+
+.five.wide.column {
+  grid-column: span 5;
+}
+
+.six.wide.column {
+  grid-column: span 6;
+}
+
+.seven.wide.column {
+  grid-column: span 7;
+}
+
+.eight.wide.column {
+  grid-column: span 8;
+}
+
+.nine.wide.column {
+  grid-column: span 9;
+}
+
+.ten.wide.column {
+  grid-column: span 10;
+}
+
+.eleven.wide.column {
+  grid-column: span 11;
+}
+
+.twelve.wide.column {
+  grid-column: span 12;
+}
+
+.thirteen.wide.column {
+  grid-column: span 13;
+}
+
+.fourteen.wide.column {
+  grid-column: span 14;
+}
+
+.fifteen.wide.column {
+  grid-column: span 15;
+}
+
+.sixteen.wide.column {
+  grid-column: span 16;
+}
+
+@font-face {
+  font-family: "Icons";
+  src: url("fa-regular-400.429238d8.eot");
+  src: url("fa-regular-400.429238d8.eot?#iefix") format("embedded-opentype"), url("fa-regular-400.031a524d.woff2") format("woff2"), url("fa-regular-400.458ab567.woff") format("woff"), url("fa-regular-400.2b288cbf.ttf") format("truetype"), url("fa-regular-400.34489141.svg#icons") format("svg");
+}
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
+
+#container {
+  margin: 200px auto;
+  width: 600px;
+  height: 600px;
+  box-shadow: 0 0 10px 0px #444;
+}

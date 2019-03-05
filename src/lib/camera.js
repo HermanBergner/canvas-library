@@ -1,26 +1,13 @@
 import Vector from './vector'
+import Texture from './texture'
+
 export default class Camera{
-  constructor(opt){
+  constructor({ x = 0, y = 0, z = -1 }){
 
-    this.options = Object.assign({
-      background: 0x000,
-      x: 0,
-      y: 0,
-      zoom: 1
-    }, opt)
-
-    const { x, y }  = this.options
-    this.position = new Vector(x, y)
+    this.position = new Vector( x, y, z )
   }
 
-  get zoom(){
-    const { zoom } = this.options
-    return zoom
-  }
-
-
-  set zoom(zoom){
-    this.options.zoom = zoom
-    return this
-  }
+  follow(){}
+  lookAt(){}
+  zero(){}
 }

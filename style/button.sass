@@ -1,0 +1,63 @@
+@import './colors.sass'
+
+$colors: ("red": $red, "orange":$orange, "yellow":$yellow, "green":$green, "teal":$teal, "aqua":$aqua, "blue":$blue, "purple":$purple, "pink":$pink)
+
+
+
+
+@each $name, $color in $colors
+  .button
+    &.#{$name}
+      background-color: #{$color}
+      color: white
+      &:hover
+        background-color: darken($color, 10%)
+      &:active
+        background-color: darken($color, 15%)
+  
+.button
+  user-select: none
+  display: inline-block
+  background-color: $gray
+  color: darken($gray, 40%)
+  padding: 10px
+  border-radius: 0.3rem
+  font-size: 1.2rem
+  border: none
+  position: relative
+  &:focus
+    outline: none
+  &:hover
+    background-color: darken($gray, 5%)
+  &:active
+    background-color: darken($gray, 10%)
+    
+
+.button.extreme
+  font-size: 3.7rem
+.button.massive
+  font-size: 3.3rem
+.button.hudge
+  font-size: 2.9rem
+.button.big
+  font-size: 2.5rem
+.button.large
+  font-size: 2.1rem
+.button.medium
+  font-size: 1.7rem
+.button.small
+  font-size: 1.3rem
+.button.tiny
+  font-size: 0.9rem
+.button.mini
+  font-size: 0.6rem
+
+.temp
+  width: 90%
+  margin: 100px auto
+
+
+
+
+
+
