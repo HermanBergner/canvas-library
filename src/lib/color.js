@@ -1,5 +1,3 @@
-import { throws } from "assert";
-
 export default class Color {
   constructor(r, g, b, a = 1) {
 
@@ -10,12 +8,13 @@ export default class Color {
       else if (!b)
         this._rgba = { r: r, g: r, b: r, a }
       else
-        this._rgba = { r: r, g: r, b: r, a }
+        this._rgba = { r: r, g: g, b: b, a }
     } else {
 
       const patterns = {
         hex3: /^#?[0-9a-fA-F]{3}$/i,
-        hex6: /^#?[0-9a-fA-F]{6}$/i
+        hex6: /^#?[0-9a-fA-F]{6}$/i,
+        rgba: /^rgba\((.*)\)$/i
       }
 
       for (let [name, regex] of Object.entries(patterns)) {
@@ -23,6 +22,12 @@ export default class Color {
         if (match)
           if (name.includes('hex'))
             this._rgba = Color.hexToRGB(r)
+          else if(name.includes('rgba')){
+            const [r, g, b, a] = match[1].split(',')
+            console.log(r, g, b, a)
+            return new Color(r, g, b, a)
+          }
+            
       }
 
     }
@@ -77,7 +82,7 @@ export default class Color {
   }
 
   get rgba() {
-    const { r, g, b } = this
+    const { r, g, b, a } = this
     return `rgba(${r},${g},${b},${a})`
   }
 

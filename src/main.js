@@ -17,10 +17,11 @@ import Texture from './lib/texture'
 import Ellipse from './lib/ellipse'
 import Rectangle from './lib/rectangle'
 import Grid from './lib/grid';
-
+import Sensor from './lib/sensor';
 
 //Styling
 import Color from './lib/color';
+
 
 
 
@@ -37,14 +38,14 @@ const rectangle = new Rectangle({ x:0, y:0, width: 10, height: 10})
 const grid = new Grid({ rows: 200, columns: 200, width: 6000, height: 6000 })
 
 
-
-
+const sensor = new Sensor({ x: 0, y: 0, radius: 2000, width: 100, height:100 })
 
 // add the ellipse to the scene (for rendering)
-scene.add( rectangle )
-scene.add( grid )
 
-let b = grid.highlight(0, 10, h3 )
+scene.add( grid )
+scene.add( sensor )
+
+let b = grid.highlight(0, 10)
 
 
 const update = () => {
