@@ -1,4 +1,5 @@
 import Texture from './texture'
+import Vector from './vector'
 
 export default class Grid{
   constructor(opts){
@@ -43,4 +44,22 @@ export default class Grid{
     const { highlights } = this.options
     return highlights
   }
+
+
+  getPositionAt({ row = 0, column = 0 }){
+
+    const { width, height, rows, columns } = this
+
+    const spaceX = width  / columns
+    const spaceY = height / rows
+
+    console.log(spaceX)
+
+    const x = column * spaceX + spaceX * 0.5 - width / 2
+    const y = row * spaceY + spaceY * 0.5 - height / 2
+
+    return new Vector(x, y)
+  }
+
+
 }

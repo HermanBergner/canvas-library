@@ -17,11 +17,10 @@ import Texture from './lib/texture'
 import Ellipse from './lib/ellipse'
 import Rectangle from './lib/rectangle'
 import Grid from './lib/grid';
-import Sensor from './lib/sensor';
+
 
 //Styling
 import Color from './lib/color';
-
 
 
 
@@ -34,18 +33,19 @@ const renderer = new Renderer()
 // Add the renderers dom element to a container
 document.querySelector('#container').appendChild(renderer.dom)
 
+
+const grid = new Grid({ rows: 21, columns: 21, width: 600, height: 600 })
 const rectangle = new Rectangle({ x:0, y:0, width: 10, height: 10})
-const grid = new Grid({ rows: 200, columns: 200, width: 6000, height: 6000 })
+
+rectangle.position = grid.getPositionAt({row: 10, column: 10})
 
 
-const sensor = new Sensor({ x: 0, y: 0, radius: 2000, width: 100, height:100 })
+console.log(rectangle)
+
 
 // add the ellipse to the scene (for rendering)
-
+scene.add( rectangle )
 scene.add( grid )
-scene.add( sensor )
-
-let b = grid.highlight(0, 10)
 
 
 const update = () => {

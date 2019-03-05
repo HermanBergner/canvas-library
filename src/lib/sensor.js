@@ -4,7 +4,7 @@ import Vector from './vector'
 import Texture from './texture'
 
 export default class Sensor {
-    constructor(opt, texture) {
+    constructor(opt, ...textures) {
 
         const options = {
             x: 0,
@@ -35,13 +35,8 @@ export default class Sensor {
             drawFrom
         }
 
-        const a = new Texture({ fill: 'rgba(0, 255, 0, 0.3)', stroke: 0xffffff, strokeWeight: 20 })
-
-        console.log(a)
-        const b = new Texture({ fill: 0xff0000 })
-
-        this.rectangle = new Rectangle({ x, y, width, height, drawFrom}, b)
-        this.ellipse = new Ellipse({ x, y, radius }, a)
+        this.rectangle = new Rectangle({ x, y, width, height, drawFrom}, textures[0])
+        this.ellipse = new Ellipse({ x, y, radius }, textures[1])
 
     }
 

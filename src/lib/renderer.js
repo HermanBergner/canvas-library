@@ -67,7 +67,6 @@ export default class Renderer {
       } else if (entity instanceof Grid) {
         renderGrid(entity, context)
       }else if(entity instanceof Sensor){
-        
         const { rectangle, ellipse } = entity
         renderEllipse(ellipse, context)
         renderRectangle(rectangle, context)

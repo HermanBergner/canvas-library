@@ -1250,6 +1250,8 @@ exports.default = void 0;
 
 var _texture = _interopRequireDefault(require("./texture"));
 
+var _vector = _interopRequireDefault(require("./vector"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1287,6 +1289,24 @@ function () {
       return this.options.highlights[index - 1];
     }
   }, {
+    key: "getPositionAt",
+    value: function getPositionAt(_ref) {
+      var _ref$row = _ref.row,
+          row = _ref$row === void 0 ? 0 : _ref$row,
+          _ref$column = _ref.column,
+          column = _ref$column === void 0 ? 0 : _ref$column;
+      var width = this.width,
+          height = this.height,
+          rows = this.rows,
+          columns = this.columns;
+      var spaceX = width / columns;
+      var spaceY = height / rows;
+      console.log(spaceX);
+      var x = column * spaceX + spaceX * 0.5 - width / 2;
+      var y = row * spaceY + spaceY * 0.5 - height / 2;
+      return new _vector.default(x, y);
+    }
+  }, {
     key: "rows",
     get: function get() {
       var rows = this.options.rows;
@@ -1322,7 +1342,7 @@ function () {
 }();
 
 exports.default = Grid;
-},{"./texture":"src/lib/texture.js"}],"src/lib/sensor.js":[function(require,module,exports) {
+},{"./texture":"src/lib/texture.js","./vector":"src/lib/vector.js"}],"src/lib/sensor.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1349,7 +1369,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var Sensor =
 /*#__PURE__*/
 function () {
-  function Sensor(opt, texture) {
+  function Sensor(opt) {
     _classCallCheck(this, Sensor);
 
     var options = {
@@ -1375,27 +1395,18 @@ function () {
       texture: texture ? texture : _texture.default.Default(),
       drawFrom: drawFrom
     };
-    var a = new _texture.default({
-      fill: 'rgba(0, 255, 0, 0.3)',
-      stroke: 0xffffff,
-      strokeWeight: 20
-    });
-    console.log(a);
-    var b = new _texture.default({
-      fill: 0xff0000
-    });
     this.rectangle = new _rectangle.default({
       x: x,
       y: y,
       width: width,
       height: height,
       drawFrom: drawFrom
-    }, b);
+    }, arguments.length <= 1 ? undefined : arguments[1]);
     this.ellipse = new _ellipse.default({
       x: x,
       y: y,
       radius: radius
-    }, a);
+    }, arguments.length <= 2 ? undefined : arguments[2]);
   }
 
   _createClass(Sensor, [{
@@ -1877,8 +1888,6 @@ var _rectangle = _interopRequireDefault(require("./lib/rectangle"));
 
 var _grid = _interopRequireDefault(require("./lib/grid"));
 
-var _sensor = _interopRequireDefault(require("./lib/sensor"));
-
 var _color = _interopRequireDefault(require("./lib/color"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -1902,29 +1911,26 @@ var scene = new _scene.default({
 var renderer = new _renderer.default(); // Add the renderers dom element to a container
 
 document.querySelector('#container').appendChild(renderer.dom);
+var grid = new _grid.default({
+  rows: 21,
+  columns: 21,
+  width: 600,
+  height: 600
+});
 var rectangle = new _rectangle.default({
   x: 0,
   y: 0,
   width: 10,
   height: 10
 });
-var grid = new _grid.default({
-  rows: 200,
-  columns: 200,
-  width: 6000,
-  height: 6000
+rectangle.position = grid.getPositionAt({
+  row: 10,
+  column: 10
 });
-var sensor = new _sensor.default({
-  x: 0,
-  y: 0,
-  radius: 2000,
-  width: 100,
-  height: 100
-}); // add the ellipse to the scene (for rendering)
+console.log(rectangle); // add the ellipse to the scene (for rendering)
 
+scene.add(rectangle);
 scene.add(grid);
-scene.add(sensor);
-var b = grid.highlight(0, 10);
 
 var update = function update() {
   requestAnimationFrame(update); //b.x = ++b.x % 200
@@ -1942,7 +1948,7 @@ renderer.dom.addEventListener('mousewheel', function (e) {
   var delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.detail));
   camera.position.z += delta * 0.2;
 });
-},{"../style/main.sass":"style/main.sass","./lib/vector":"src/lib/vector.js","./lib/renderer":"src/lib/renderer.js","./lib/camera":"src/lib/camera.js","./lib/scene":"src/lib/scene.js","./lib/texture":"src/lib/texture.js","./lib/ellipse":"src/lib/ellipse.js","./lib/rectangle":"src/lib/rectangle.js","./lib/grid":"src/lib/grid.js","./lib/sensor":"src/lib/sensor.js","./lib/color":"src/lib/color.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../style/main.sass":"style/main.sass","./lib/vector":"src/lib/vector.js","./lib/renderer":"src/lib/renderer.js","./lib/camera":"src/lib/camera.js","./lib/scene":"src/lib/scene.js","./lib/texture":"src/lib/texture.js","./lib/ellipse":"src/lib/ellipse.js","./lib/rectangle":"src/lib/rectangle.js","./lib/grid":"src/lib/grid.js","./lib/color":"src/lib/color.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1969,7 +1975,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63210" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61575" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
