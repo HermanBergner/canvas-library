@@ -16,7 +16,7 @@
     "chai": "^4.2.0",
     "jsdom-quokka-plugin": "^1.0.14",
     "mocha": "^5.2.0",
-    "parcel-bundler": "^1.11.0",
+    "parcel-bundler": "^1.12.4",
     "sass": "^1.16.1"
   }
 }
